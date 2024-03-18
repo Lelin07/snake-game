@@ -1,6 +1,8 @@
 // Defining HTML element
 const board = document.getElementById("mainBoard");
 const text = document.getElementById("text");
+const score = document.getElementById("currentScore");
+const highScore = document.getElementById("highScore");
 
 const generateRandomPosition = () => {
   const x = Math.floor(Math.random() * 40) + 1;
@@ -13,10 +15,8 @@ let snake = [{ x: 20, y: 20 }];
 let food = generateRandomPosition();
 let direction = "right";
 let gameInterval;
-let gameSpeedDelay = 200;
+let gameSpeedDelay = 250;
 let gameStarted = false;
-const score = document.getElementById("currentScore");
-const highScore = document.getElementById("highScore");
 
 // Draw game map, snake, food
 const draw = () => {
@@ -160,7 +160,11 @@ const resetGame = () => {
   snake = [{ x: 20, y: 20 }];
   food = generateRandomPosition();
   direction = "right";
-  gameSpeedDelay = 200;
+  gameSpeedDelay = 250;
+  gameStarted = false;
+  text.style.display = "block";
+  board.innerHTML = "";
+  clearTimeout(gameInterval);
   updateScore();
 };
 
